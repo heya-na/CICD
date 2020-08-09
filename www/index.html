@@ -1,0 +1,11 @@
+<h1>Hello, this is the weather of Montreal</h1>
+
+<script>
+fetch('http://localhost:8080/api/data/2.5/weather?q=montreal')
+  .then(response => response.json())
+  .then(weather => {
+	var p = document.createElement("p");   
+	p.innerHTML = weather.weather[0].main;                   
+	document.body.appendChild(p);               
+  });
+</script>

@@ -1,0 +1,22 @@
+
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:	
+    runs-on: ubuntu-latest	
+
+    steps:	
+    - uses: actions/checkout@v2	
+
+    - name: Login to Docker Hub	
+      run: docker login -u heya1126 -p ${{ secrets.DOCKERHUB_PASS }}	
+
+    - name: Build Docker image	
+      run: docker build -t heya1126/weathermontreal .
+
+    - name: Publish Docker image	
+      run: docker push heya1126/weathermontreal
